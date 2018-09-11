@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".swiperotate.RotatableActivity"/>
+        <activity android:name=".frequency.ActivityFrequency"/>
     </application>
 
 </manifest>

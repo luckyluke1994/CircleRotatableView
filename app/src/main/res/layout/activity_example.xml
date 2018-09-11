@@ -49,6 +49,15 @@
         android:text="Rotate View Activity"
         android:textAllCaps="false"/>
 
+    <Button
+        android:id="@+id/bt_frequencyActivity"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Frequency View Activity"
+        android:textAllCaps="false"/>
+
     <com.example.mddien.test.CircularListView
         android:layout_centerInParent="true"
         android:id="@+id/my_circular_list"

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mddien.test.frequency.ActivityFrequency;
 import com.example.mddien.test.swiperotate.RotatableActivity;
 
 import java.util.ArrayList;
@@ -91,6 +92,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, RotatableActivity.class));
+            }
+        });
+
+        // start Activity frequency
+        Button btFrequencyActivity = findViewById(R.id.bt_frequencyActivity);
+        btFrequencyActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ActivityFrequency.class));
             }
         });
     }

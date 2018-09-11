@@ -13,13 +13,14 @@ import android.widget.ImageView;
 public class RotatableView extends ImageView {
     private RotateTouchListener rotateTouchListener;
     private Matrix mImageMatrix;
+    private Matrix mOriginalImageMatrix;
     public float layoutWidth;
     public float layoutHeight;
     public float layoutCenter_x;
     public float layoutCenter_y;
     public float radius;
     private int mPivotX, mPivotY;
-    private int rotateR = -5, rotateL = 5;
+    private float rotateR = -5f, rotateL = 5f;
 
     public RotatableView(Context context) {
         super(context);
@@ -78,6 +79,7 @@ public class RotatableView extends ImageView {
             RectF viewRect = new RectF(0, 0, getWidth(),
                     getHeight());
             mImageMatrix.setRectToRect(drawableRect, viewRect, Matrix.ScaleToFit.CENTER);
+            mOriginalImageMatrix = new Matrix(mImageMatrix);
             setImageMatrix(mImageMatrix);
         }
     }
@@ -99,6 +101,12 @@ public class RotatableView extends ImageView {
     }
 
     public void rotateAngle(float degrees) {
+        mImageMatrix.postRotate(degrees, mPivotX, mPivotY);
+        setImageMatrix(mImageMatrix);
+    }
+
+    public void setAngle(float degrees) {
+        mImageMatrix = new Matrix(mOriginalImageMatrix);
         mImageMatrix.postRotate(degrees, mPivotX, mPivotY);
         setImageMatrix(mImageMatrix);
     }

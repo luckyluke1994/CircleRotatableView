@@ -20,6 +20,7 @@ public class RotateTouchListener implements View.OnTouchListener {
     private float move_x = 0;
     private float move_y = 0;
     private int mLastAngle = 0;
+    private float minMoveDistance = 10.0f;
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
@@ -47,20 +48,35 @@ public class RotateTouchListener implements View.OnTouchListener {
                 float moveDistance = (float) Math.sqrt(move_x * move_x + move_y * move_y);
                 double radians = Math.atan(diff_y / diff_x);
                 //Convert to degrees
-                int degrees = (int)(radians * 180 / Math.PI);
+//                int degrees = (int)(radians * 180 / Math.PI);
+//
+//                if (cur_y > rotatableView.layoutCenter_y && cur_x > rotatableView.layoutCenter_x) {
+//                    if (diff_x > 0 && diff_y <= 0) rotatableView.rotateRight();
+//                    else if (diff_x < 0 && diff_y >= 0)rotatableView.rotateLeft();
+//                } else if (cur_y < rotatableView.layoutCenter_y && cur_x > rotatableView.layoutCenter_x) {
+//                    if (diff_x < 0 && diff_y <= 0) rotatableView.rotateRight();
+//                    else if (diff_x > 0 && diff_y >= 0)rotatableView.rotateLeft();
+//                } else if (cur_y < rotatableView.layoutCenter_y && cur_x < rotatableView.layoutCenter_x) {
+//                    if (diff_x < 0 && diff_y >= 0) rotatableView.rotateRight();
+//                    else if (diff_x > 0 && diff_y <= 0)rotatableView.rotateLeft();
+//                } else {
+//                    if (diff_x > 0 && diff_y >= 0) rotatableView.rotateRight();
+//                    else if (diff_x < 0 && diff_y <= 0)rotatableView.rotateLeft();
+//                }
+                float degrees = getAngle(rotatableView.layoutCenter_x, rotatableView.layoutCenter_y, pre_x, pre_y, cur_x, cur_y);
 
                 if (cur_y > rotatableView.layoutCenter_y && cur_x > rotatableView.layoutCenter_x) {
-                    if (diff_x > 0 && diff_y <= 0) rotatableView.rotateRight();
-                    else if (diff_x < 0 && diff_y >= 0)rotatableView.rotateLeft();
+                    if (diff_x > 0 && diff_y <= 0) rotatableView.rotateAngle(-degrees);
+                    else if (diff_x < 0 && diff_y >= 0) rotatableView.rotateAngle(degrees);
                 } else if (cur_y < rotatableView.layoutCenter_y && cur_x > rotatableView.layoutCenter_x) {
-                    if (diff_x < 0 && diff_y <= 0) rotatableView.rotateRight();
-                    else if (diff_x > 0 && diff_y >= 0)rotatableView.rotateLeft();
+                    if (diff_x < 0 && diff_y <= 0) rotatableView.rotateAngle(-degrees);
+                    else if (diff_x > 0 && diff_y >= 0)rotatableView.rotateAngle(degrees);
                 } else if (cur_y < rotatableView.layoutCenter_y && cur_x < rotatableView.layoutCenter_x) {
-                    if (diff_x < 0 && diff_y >= 0) rotatableView.rotateRight();
-                    else if (diff_x > 0 && diff_y <= 0)rotatableView.rotateLeft();
+                    if (diff_x < 0 && diff_y >= 0) rotatableView.rotateAngle(-degrees);
+                    else if (diff_x > 0 && diff_y <= 0)rotatableView.rotateAngle(degrees);
                 } else {
-                    if (diff_x > 0 && diff_y >= 0) rotatableView.rotateRight();
-                    else if (diff_x < 0 && diff_y <= 0)rotatableView.rotateLeft();
+                    if (diff_x > 0 && diff_y >= 0) rotatableView.rotateAngle(-degrees);
+                    else if (diff_x < 0 && diff_y <= 0)rotatableView.rotateAngle(degrees);
                 }
 
                 return true;
@@ -68,7 +84,7 @@ public class RotateTouchListener implements View.OnTouchListener {
             case MotionEvent.ACTION_UP:
 
                 // it is an click action if move distance < min distance
-                moveDistance = (float) Math.sqrt(move_x * move_x + move_y * move_y);
+                //moveDistance = (float) Math.sqrt(move_x * move_x + move_y * move_y);
 //                if (moveDistance < minClickDistance && !isCircularMoving) {
 //                    for (int i = 0; i < circularView.itemViewList.size(); i++) {
 //                        View view = circularView.itemViewList.get(i);
@@ -93,40 +109,12 @@ public class RotateTouchListener implements View.OnTouchListener {
         return false;
     }
 
-    private int getCWDirection(float diff_x, float diff_y) {
-        if ((diff_x > 0 && diff_y <= 0) ||
-                (diff_x < 0 && diff_y <=0) ||
-                (diff_x < 0 && diff_y >= 0) ||
-                (diff_x > 0 && diff_y >= 0)) {
-            return 0;
-        } else {
-            return 1;
-        }
-    }
-
-    private float getRotationAngle(final float x1, final float y1, final float x2, final float y2) {
-        final float CLOCK_WISE = 1.0f;
-        final float ANTI_CLOCK_WISE = -1.0f;
-
-        final float deltaX = Math.abs(x2 - x1);
-        final float deltaY = Math.abs(y2 - y1);
-
-        if (deltaX == 0) {
-            return 0.0f;
-        }
-
-        final float angle = (float) Math.toDegrees(Math.atan(deltaY / deltaX));
-
-        if (x1 <= x2 && y2 <= y1) {
-            return CLOCK_WISE * (90.0f - angle);
-        } else if (x2 <= x1 && y2 <= y1) {
-            return ANTI_CLOCK_WISE * (90.0f - angle);
-        } else if (x2 <= x1 && y1 <= y2) {
-            return ANTI_CLOCK_WISE * (90.0f + angle);
-        } else if (x1 <= x2 && y1 <= y2) {
-            return CLOCK_WISE * (90.0f + angle);
-        } else {
-            return 0.0f;
-        }
+    private float getAngle(float centerX, float centerY, float x1, float y1, float x2, float y2) {
+        float a = (x1 - centerX) * (x1 - centerX) + (y1 - centerY) * (y1 - centerY);
+        float b = (x2 - centerX) * (x2 - centerX) + (y2 - centerY) * (y2 - centerY);
+        float c = (x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1);
+        double cosC = (a + b - c) / (2*Math.sqrt(a)*Math.sqrt(b));
+        if (cosC < 0 || cosC > 1) return 0;
+        return (float) (Math.acos(cosC) * 180 / Math.PI);
     }
 }
