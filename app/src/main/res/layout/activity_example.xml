@@ -3,66 +3,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
     <Button
         android:id="@+id/bt_remove_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="remove item"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/bt_add_item"
-        android:layout_toRightOf="@id/bt_remove_item"
-        android:layout_toEndOf="@id/bt_remove_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/bt_remove_item"
+        android:layout_toRightOf="@id/bt_remove_item"
         android:text="add item"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/bt_enlarge_radius"
-        android:layout_toRightOf="@id/bt_add_item"
-        android:layout_toEndOf="@id/bt_add_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/bt_add_item"
+        android:layout_toRightOf="@id/bt_add_item"
         android:text="enlarge radius"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false" />
 
 
     <Button
         android:id="@+id/bt_reduce_radius"
-        android:layout_toRightOf="@id/bt_enlarge_radius"
-        android:layout_toEndOf="@id/bt_enlarge_radius"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/bt_enlarge_radius"
+        android:layout_toRightOf="@id/bt_enlarge_radius"
         android:text="small radius"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/bt_rotateActivity"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:text="Rotate View Activity"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/bt_frequencyActivity"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
         android:text="Frequency View Activity"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btn_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/bt_remove_item"/>
+
+    <Button
+        android:id="@+id/btn_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="main"
+        android:layout_toRightOf="@+id/btn_test"
+        android:layout_below="@+id/bt_remove_item"/>
 
     <com.example.mddien.test.CircularListView
-        android:layout_centerInParent="true"
         android:id="@+id/my_circular_list"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:background="@drawable/circle_background"
-        />
+        android:layout_centerInParent="true"
+        android:background="@drawable/circle_background" />
 </RelativeLayout>
