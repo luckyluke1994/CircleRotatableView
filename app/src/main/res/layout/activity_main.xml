@@ -1,72 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:fillViewport="true">
 
-    <LinearLayout
-        android:id="@+id/card"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:background="@drawable/card_background"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
 
-        <TextView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/card"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@drawable/card_background"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_horizontal"
+                android:text="Project" />
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Description for project. Provide more information about project" />
+        </LinearLayout>
+
+        <SeekBar
+            android:id="@+id/seekbar"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_horizontal"
-            android:text="Project" />
+            android:max="100"
+            android:maxHeight="5dp"
+            android:progress="20"
+            android:progressDrawable="@drawable/seekbar_style"
+            android:splitTrack="false"
+            android:thumb="@drawable/custom_thumb"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card" />
 
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:src="@mipmap/ic_launcher" />
-
-        <TextView
-            android:layout_width="match_parent"
+        <com.example.mddien.test.NoPaddingTextView
+            android:id="@+id/no_padding_textview"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="16dp"
-            android:text="Description for project. Provide more information about project" />
-    </LinearLayout>
+            android:background="@color/colorPrimary"
+            android:fontFamily="serif-monospace"
+            android:text="g"
+            android:textColor="@android:color/white"
+            android:textSize="80px"
+            android:textStyle="italic"
+            android:typeface="sans"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seekbar" />
 
-    <SeekBar
-        android:id="@+id/seekbar"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:max="100"
-        android:maxHeight="5dp"
-        android:progress="20"
-        android:progressDrawable="@drawable/seekbar_style"
-        android:splitTrack="false"
-        android:thumb="@drawable/custom_thumb"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card" />
-
-    <com.example.mddien.test.NoPaddingTextView
-        android:id="@+id/no_padding_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:text="g"
-        android:fontFamily="serif-monospace"
-        android:textStyle="italic"
-        android:typeface="sans"
-        android:textColor="@android:color/white"
-        android:textSize="80px"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/seekbar" />
-
-</android.support.constraint.ConstraintLayout>
+        <com.example.mddien.test.SeekArc
+            android:id="@+id/seekArc"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:arcColor="@color/progress_gray"
+            android:padding="40dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/no_padding_textview"
+            app:rotation="180"
+            app:startAngle="60"
+            app:sweepAngle="240"
+            app:touchInside="true" />
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
