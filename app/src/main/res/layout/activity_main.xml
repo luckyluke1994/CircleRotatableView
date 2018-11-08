@@ -41,16 +41,32 @@
     </LinearLayout>
 
     <SeekBar
+        android:id="@+id/seekbar"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:max="100"
-        android:progress="20"
-        android:splitTrack="false"
         android:maxHeight="5dp"
+        android:progress="20"
         android:progressDrawable="@drawable/seekbar_style"
+        android:splitTrack="false"
         android:thumb="@drawable/custom_thumb"
-        app:layout_constraintTop_toBottomOf="@+id/card"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card" />
+
+    <com.example.mddien.test.NoPaddingTextView
+        android:id="@+id/no_padding_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="g"
+        android:fontFamily="serif-monospace"
+        android:textStyle="italic"
+        android:typeface="sans"
+        android:textColor="@android:color/white"
+        android:textSize="80px"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/seekbar" />
 
 </android.support.constraint.ConstraintLayout>
